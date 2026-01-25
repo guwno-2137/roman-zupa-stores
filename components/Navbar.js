@@ -2,49 +2,38 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur border-b border-gray-800">
-      <div className="flex justify-between items-center px-10 md:px-24 py-6">
+    <nav className="navbar">
+      <div className="navbar-inner">
 
-        {/* LOGO */}
+        {/* LOGO + NAZWA */}
         <Link href="/" legacyBehavior>
-          <a className="flex items-center gap-3 cursor-pointer">
-           
-          <img
-  src="/logo.png"
-  alt="Roman Zupa"
-  className="navbar-logo"
-/>
-
- <a className="border border-gold px-4 py-2 hover:bg-gold hover:text-black transition">
-              ROMAN ZUPA
-            </a>
-
-            
+          <a className="navbar-brand">
+            <img
+              src="/logo.png"
+              alt="Roman Zupa"
+              className="navbar-logo"
+            />
+            <span className="navbar-title">
+              Roman Zupa
+            </span>
           </a>
         </Link>
 
         {/* MENU */}
-        <div className="flex items-center space-x-10 text-sm tracking-widest uppercase">
-
+        <div className="navbar-menu">
           <Link href="/shop" legacyBehavior>
-            <a className="hover:text-gold transition">
-              Kolekcja
-            </a>
+            <a>Kolekcja</a>
           </Link>
 
           <Link href="/cart" legacyBehavior>
-            <a className="hover:text-gold transition">
-              Koszyk
-            </a>
+            <a>Koszyk</a>
           </Link>
 
           <Link href="/admin" legacyBehavior>
-            <a className="border border-gold px-4 py-2 hover:bg-gold hover:text-black transition">
-              Panel
-            </a>
+            <a className="navbar-admin">Panel</a>
           </Link>
-
         </div>
+
       </div>
     </nav>
   );
