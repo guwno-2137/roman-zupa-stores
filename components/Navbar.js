@@ -8,15 +8,16 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" legacyBehavior>
           <a className="flex items-center gap-3 cursor-pointer">
-            <a className="border border-gold px-4 py-2 hover:bg-gold hover:text-black transition">
-              ROMAN ZUPA
-            </a>
+           
           <img
   src="/logo.png"
   alt="Roman Zupa"
   className="navbar-logo"
 />
 
+ <a className="border border-gold px-4 py-2 hover:bg-gold hover:text-black transition">
+              ROMAN ZUPA
+            </a>
 
             
           </a>
