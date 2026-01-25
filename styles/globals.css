@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RESET + BASE */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* LINKS */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* INPUTS */
+
+input, textarea {
+  background-color: #111111;
+  border: 1px solid #222222;
+  color: white;
+  padding: 12px;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #777777;
+}
+
+/* BUTTONS */
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* SCROLLBAR (subtelny luksus) */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+}
