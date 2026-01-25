@@ -9,7 +9,7 @@ export default function Navbar() {
         <Link href="/" legacyBehavior>
           <a className="flex items-center gap-3 cursor-pointer">
             <img
-              src="/Public/Untitled5_20260120220021.png"
+              src="/logo.png"
               alt="Roman Zupa"
               className="h-8 md:h-10 object-contain"
             />
