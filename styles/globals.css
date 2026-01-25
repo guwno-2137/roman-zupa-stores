@@ -111,3 +111,102 @@ button {
   }
 }
 
+
+/* =========================
+   NAVBAR – ROMAN ZUPA
+========================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #222;
+}
+
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 32px;              /* WIĘKSZY NAVBAR */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* BRAND */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;                        /* PRZERWA LOGO ↔ TEKST */
+  text-decoration: none;
+}
+
+.navbar-logo {
+  height: 42px;                    /* WIĘKSZE LOGO */
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-title {
+  font-size: 20px;                 /* WIĘKSZY TEKST */
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* MENU */
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 48px;                       /* DUŻE PRZERWY */
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.navbar-menu a {
+  color: #bbb;
+  transition: color 0.2s ease;
+}
+
+.navbar-menu a:hover {
+  color: #fff;
+}
+
+/* ADMIN BUTTON */
+
+.navbar-admin {
+  padding: 12px 22px;
+  border: 1px solid #d4af37;
+  color: #d4af37 !important;
+  transition: all 0.2s ease;
+}
+
+.navbar-admin:hover {
+  background: #d4af37;
+  color: #000 !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 20px 20px;
+  }
+
+  .navbar-title {
+    font-size: 16px;
+  }
+
+  .navbar-menu {
+    gap: 24px;
+  }
+}
+
+
