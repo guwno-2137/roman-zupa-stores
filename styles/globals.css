@@ -92,3 +92,22 @@ button {
   background: #2a2a2a;
   border-radius: 10px;
 }
+
+/* =========================
+   NAVBAR LOGO CONTROL
+========================= */
+
+.navbar-logo {
+  height: 32px;          /* mobile */
+  width: auto;
+  max-width: 180px;      /* zabezpieczenie przed potworem */
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .navbar-logo {
+    height: 40px;        /* desktop */
+    max-width: 240px;
+  }
+}
+
