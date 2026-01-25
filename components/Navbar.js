@@ -11,7 +11,8 @@ export default function Navbar() {
             <img
               src="/logo.png"
               alt="Roman Zupa"
-              className="h-8 md:h-10 object-contain"
+              className="h-6 md:h-8 object-contain"
+
             />
           </a>
         </Link>
