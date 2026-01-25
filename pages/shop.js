@@ -19,22 +19,34 @@ export async function getServerSideProps() {
 
 export default function Shop({ products }) {
   return (
-    <main className="px-10 md:px-24 py-24">
-      <h1 className="text-4xl font-bold mb-16 tracking-tight">
-        Kolekcja
-      </h1>
+    <main className="collection">
 
+      {/* HEADER */}
+      <section className="collection-header">
+        <h1 className="collection-title">
+          Kolekcja
+        </h1>
+
+        <p className="collection-subtitle">
+          Ulica spotyka dziedzictwo.  
+          Limitowana forma, bez kompromisów.
+        </p>
+      </section>
+
+      {/* EMPTY */}
       {products.length === 0 && (
-        <p className="text-gray-500">
-          Kolekcja w przygotowaniu.
+        <p className="collection-empty">
+          Nowy drop w przygotowaniu.
         </p>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {/* GRID */}
+      <section className="collection-grid">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
+      </section>
+
     </main>
   );
 }
