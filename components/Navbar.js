@@ -8,10 +8,13 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" legacyBehavior>
           <a className="flex items-center gap-3 cursor-pointer">
-            <img
-              src="/logo.png"
-              alt="Roman Zupa"
-              className="h-6 md:h-8 object-contain"
+           
+          <img
+  src="/logo.png"
+  alt="Roman Zupa"
+  className="navbar-logo"
+/>
+
 
             />
           </a>
