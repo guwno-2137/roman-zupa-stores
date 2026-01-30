@@ -3,21 +3,26 @@ import { db } from "../lib/firebase";
 import ProductCard from "../components/ProductCard";
 
 export async function getServerSideProps() {
-  const snapshot = await getDocs(collection(db, "products"));
+  try {
+    const snapshot = await getDocs(collection(db, "products"));
 
-  const products = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
+    const products = snapshot?.docs?.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) || [];
 
-  return {
-    props: {
-      products
-    }
-  };
+    return {
+      props: { products }
+    };
+  } catch (error) {
+    console.error("Błąd przy pobieraniu produktów:", error);
+    return {
+      props: { products: [] } // fallback w razie błędu
+    };
+  }
 }
 
-export default function Shop({ products }) {
+export default function Shop({ products = [] }) { // default do []
   return (
     <main className="collection">
 
@@ -41,11 +46,13 @@ export default function Shop({ products }) {
       )}
 
       {/* GRID */}
-      <section className="collection-grid">
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </section>
+      {products.length > 0 && (
+        <section className="collection-grid">
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </section>
+      )}
 
     </main>
   );
