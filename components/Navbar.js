@@ -1,48 +1,54 @@
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../lib/firebase";
+import ProductCard from "../components/ProductCard";
 
-import Link from "next/link";
-import { useState } from "react";
+export async function getServerSideProps() {
+  const snapshot = await getDocs(collection(db, "products"));
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const products = snapshot.docs.map(doc => {
+    const data = doc.data();
 
+    return {
+      id: doc.id,
+      ...JSON.parse(JSON.stringify(data)) // 🔥 FIRESTORE FIX
+    };
+  });
+
+  return {
+    props: {
+      products
+    }
+  };
+}
+
+export default function Shop({ products }) {
   return (
-    <nav className="navbar">
-      <div className="navbar-inner">
+    <main className="collection">
 
-        {/* BRAND */}
-        <Link href="/" legacyBehavior>
-          <a className="navbar-brand">
-            <img src="/logo.png" alt="Roman Zupa" className="navbar-logo" />
-            <span className="navbar-title">Roman Zupa</span>
-          </a>
-        </Link>
+      {/* HEADER */}
+      <section className="collection-header">
+        <h1 className="collection-title">Kolekcja</h1>
 
-        {/* BURGER */}
-        <button
-          className="navbar-burger"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
-        </button>
+        <p className="collection-subtitle">
+          Ulica spotyka dziedzictwo.  
+          Limitowana forma, bez kompromisów.
+        </p>
+      </section>
 
-        {/* MENU */}
-        <div className={`navbar-menu ${open ? "open" : ""}`}>
-          <Link href="/shop" legacyBehavior>
-            <a onClick={() => setOpen(false)}>Kolekcja</a>
-          </Link>
+      {/* EMPTY */}
+      {products.length === 0 && (
+        <p className="collection-empty">
+          Nowy drop w przygotowaniu.
+        </p>
+      )}
 
-          <Link href="/cart" legacyBehavior>
-            <a onClick={() => setOpen(false)}>Koszyk</a>
-          </Link>
+      {/* GRID */}
+      <section className="collection-grid">
+        {products.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </section>
 
-          <Link href="/admin" legacyBehavior>
-            <a className="navbar-admin" onClick={() => setOpen(false)}>
-              Panel
-            </a>
-          </Link>
-        </div>
-
-      </div>
-    </nav>
+    </main>
   );
 }
