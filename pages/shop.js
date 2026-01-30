@@ -1,30 +1,40 @@
-// Shop.js – totalnie defensywny, zero crashy
-import ProductCard from './ProductCard';
-
-export default function Shop({ products }) {
-  // jeśli props brak, zawsze mamy pustą tablicę
-  const safeProducts = Array.isArray(products) ? products : [];
-
+export default function Shop() {
   return (
-    <main className="collection">
-      <section className="collection-header">
-        <h1 className="collection-title">Kolekcja</h1>
-        <p className="collection-subtitle">
+    <main className="collection" style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+      <section className="collection-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>Kolekcja</h1>
+        <p style={{ color: '#666', fontSize: '1rem' }}>
           Ulica spotyka dziedzictwo. Limitowana forma, bez kompromisów.
         </p>
       </section>
 
-      {safeProducts.length === 0 ? (
-        <p className="collection-empty">
+      <section className="collection-empty-container" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '5rem 2rem',
+        border: '2px dashed #ff0044',
+        borderRadius: '12px',
+        background: '#fff8f8',
+        maxWidth: '600px',
+        margin: '0 auto'
+      }}>
+        <p className="collection-empty" style={{
+          textAlign: 'center',
+          fontSize: '1.4rem',
+          color: '#ff0044',
+          fontWeight: 'bold',
+          marginBottom: '1rem'
+        }}>
           Nowy drop w przygotowaniu – stay tuned! 🚀
         </p>
-      ) : (
-        <section className="collection-grid">
-          {safeProducts.map((product) => (
-            <ProductCard key={product.id || Math.random()} product={product} />
-          ))}
-        </section>
-      )}
+        <img 
+          src="/images/coming-soon.png" 
+          alt="Nowy drop" 
+          style={{ width: '150px', opacity: 0.7 }}
+        />
+      </section>
     </main>
   );
 }
