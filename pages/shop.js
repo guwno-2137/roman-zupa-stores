@@ -4,8 +4,8 @@ import ProductCard from "../components/ProductCard";
 
 export async function getServerSideProps() {
   try {
+    // pobranie produktów z Firebase
     const snapshot = await getDocs(collection(db, "products"));
-
     const products = snapshot?.docs?.map(doc => ({
       id: doc.id,
       ...doc.data()
@@ -17,38 +17,35 @@ export async function getServerSideProps() {
   } catch (error) {
     console.error("Błąd przy pobieraniu produktów:", error);
     return {
-      props: { products: [] } // fallback w razie błędu
+      props: { products: [] } // fallback jeśli coś się sypnie
     };
   }
 }
 
-export default function Shop({ products = [] }) { // default do []
+export default function Shop({ products }) {
+  // bezpieczna tablica, nigdy undefined
+  const safeProducts = Array.isArray(products) ? products : [];
+
   return (
     <main className="collection">
 
       {/* HEADER */}
       <section className="collection-header">
-        <h1 className="collection-title">
-          Kolekcja
-        </h1>
-
+        <h1 className="collection-title">Kolekcja</h1>
         <p className="collection-subtitle">
-          Ulica spotyka dziedzictwo.  
-          Limitowana forma, bez kompromisów.
+          Ulica spotyka dziedzictwo. Limitowana forma, bez kompromisów.
         </p>
       </section>
 
       {/* EMPTY */}
-      {products.length === 0 && (
-        <p className="collection-empty">
-          Nowy drop w przygotowaniu.
-        </p>
+      {safeProducts.length === 0 && (
+        <p className="collection-empty">Nowy drop w przygotowaniu.</p>
       )}
 
       {/* GRID */}
-      {products.length > 0 && (
+      {safeProducts.length > 0 && (
         <section className="collection-grid">
-          {products.map(product => (
+          {safeProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </section>
